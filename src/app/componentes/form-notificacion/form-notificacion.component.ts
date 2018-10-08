@@ -1,3 +1,4 @@
+import { ServicioPrincipalService } from './../../servicios/servicio-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { Notificacion } from '../../utils/interfaces';
 
@@ -17,13 +18,18 @@ export class FormNotificacionComponent implements OnInit {
     fecha: ''
   };
 
-  constructor() { }
+  constructor( private _principal: ServicioPrincipalService) { }
 
   ngOnInit() {
   }
 
   enviar() {
-    console.log( JSON.stringify( this.notificacion ) );
+    this._principal.enviarNotificacion(this.notificacion, this.para)
+      .subscribe( resp => {
+        console.log(`Respuesta de Firebase al enviar notificacion ${ JSON.stringify(resp) }`);
+      }, err => {
+        console.log(`Error al enviar notificación ${ JSON.stringify(err) }`);
+      });
   }
 
 }
