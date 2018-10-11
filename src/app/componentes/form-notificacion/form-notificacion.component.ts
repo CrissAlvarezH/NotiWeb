@@ -1,6 +1,7 @@
 import { ServicioPrincipalService } from './../../servicios/servicio-principal.service';
 import { Component, OnInit } from '@angular/core';
 import { Notificacion } from '../../utils/interfaces';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-notificacion',
@@ -8,25 +9,28 @@ import { Notificacion } from '../../utils/interfaces';
   styleUrls: ['./form-notificacion.component.css']
 })
 export class FormNotificacionComponent implements OnInit {
+  public form: FormGroup;
 
-  public para = 'PROFESORES';
-
-  public notificacion: Notificacion = {
-    titulo: '',
-    descripcion: '',
-    tipo: 1,
-    fecha: ''
-  };
-
-  constructor( private _principal: ServicioPrincipalService) { }
+  constructor( private _principal: ServicioPrincipalService) {
+    this.form = new FormGroup({
+      'notificacion' : new FormGroup({
+        'titulo': new FormControl('', [ Validators.required ]),
+        'descripcion': new FormControl('', [ Validators.required ]),
+        'tipo': new FormControl('', [ Validators.required ]),
+        'destinatario': new FormControl('', [ Validators.required ])
+      })
+    });
+  }
 
   ngOnInit() {
   }
 
   enviar() {
-    this._principal.enviarNotificacion(this.notificacion, this.para)
+    console.log( this.form  );
+
+    this._principal.enviarNotificacion(this.form.value.notificacion)
       .subscribe( resp => {
-        console.log(`Respuesta de Firebase al enviar notificacion ${ JSON.stringify(resp) }`);
+        console.log(`Respuesta de servicio web al enviar notificacion ${ JSON.stringify(resp) }`);
       }, err => {
         console.log(`Error al enviar notificación ${ JSON.stringify(err) }`);
       });

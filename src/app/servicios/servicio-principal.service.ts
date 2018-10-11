@@ -9,29 +9,16 @@ export class ServicioPrincipalService {
 
   constructor( private http: HttpClient ) { }
 
-  public enviarNotificacion( notificacion: Notificacion, para: string ) {
+
+  public enviarNotificacion( notificacion: Notificacion ) {
     const ahora = new Date();
+    notificacion.fecha = `${ ahora.getDay() } del mes ${ ahora.getMonth() } `;
+    notificacion.hora = `${ ahora.getHours() }:${ ahora.getMinutes() }`;
 
-    const url = 'https://fcm.googleapis.com/fcm/send';
+    const body = notificacion;
 
-    const body = {
-        'to' : `/topics/${ para }`,
-        'data' : {
-            'tituloNoti'  :  notificacion.titulo,
-            'descripcionNoti' : notificacion.descripcion,
-            'fechaNoti' : `${ ahora.getDay() } del mes ${ ahora.getMonth() } `,
-            'tipoNoti': notificacion.tipo
-        },
-        'priority': 'high'
-    };
+    const url = 'http://10.10.10.15/noti_server/src/index.php/notificaciones';
 
-    const opciones = {
-      'headers': {
-        'Content-Type': 'application/json',
-        'Authorization': 'key=AIzaSyDJNVzLTUhAVTS2p7CDAjuvMj2-l12P5ks'
-      }
-    };
-
-    return this.http.post(url, body, opciones);
+    return this.http.post(url, body);
   }
 }

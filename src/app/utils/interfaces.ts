@@ -4,4 +4,6 @@ export interface Notificacion {
     descripcion: string;
     tipo: number;
     fecha: string;
+    hora?: string;
+    destinatario?: string;
 }
