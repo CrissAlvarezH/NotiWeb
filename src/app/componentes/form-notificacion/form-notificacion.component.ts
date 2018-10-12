@@ -26,11 +26,14 @@ export class FormNotificacionComponent implements OnInit {
   }
 
   enviar() {
-    console.log( this.form  );
-
     this._principal.enviarNotificacion(this.form.value.notificacion)
-      .subscribe( resp => {
-        console.log(`Respuesta de servicio web al enviar notificacion ${ JSON.stringify(resp) }`);
+      .subscribe( (resp: any) => {
+
+        if ( resp.okay ) {
+          console.log(`Respuesta de servicio web al enviar notificacion ${ JSON.stringify(resp) }`);
+        } else {
+          console.log(`Error`);
+        }
       }, err => {
         console.log(`Error al enviar notificación ${ JSON.stringify(err) }`);
       });

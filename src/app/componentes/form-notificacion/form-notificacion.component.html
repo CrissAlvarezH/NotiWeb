@@ -1,63 +1,52 @@
+<h4 class="titulo-form-noti">
+    Notificación</h4>
 
-<h3 class="titulo-form-noti">Notificación</h3>
+<form [formGroup]="form" class="form-bloque">
 
-<form [formGroup]="form" >
+    <div formGroupName="notificacion">
 
-  <div formGroupName="notificacion">
-    <div class="form-group">
-      <label for="titulo" > Titulo </label>
-      <input  formControlName="titulo" maxlength="50"  id="titulo" class="form-control" type="text" placeholder="Titulo" 
-              [ngClass]="{ 'is-invalid' : form.controls['notificacion'].controls['titulo']?.touched && form.controls['notificacion'].controls['titulo']?.invalid }" >
-      
-      <div class="invalid-feedback"><!-- Aparece automaticamente cuando el input tiene la clase is-invalid -->
-        Escriba un titulo 
-      </div>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Titulo" formControlName="titulo" maxlength="50">
+
+            <mat-error *ngIf=" form.controls['notificacion'].controls['titulo'].touched && form.controls['notificacion'].controls['titulo'].invalid ">
+                Escriba un titulo
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <textarea matInput placeholder="Descripcion" rows="4" formControlName="descripcion"></textarea>
+
+            <mat-error *ngIf=" form.controls['notificacion'].controls['descripcion'].touched && form.controls['notificacion'].controls['descripcion'].invalid ">
+                Escriba una descripción
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Tipo" formControlName="tipo">
+                <mat-option value="1"> Noticia </mat-option>
+                <mat-option value="2"> Advertencia </mat-option>
+                <mat-option value="3"> Peligro </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf=" form.controls['notificacion'].controls['tipo'].touched && form.controls['notificacion'].controls['tipo'].invalid ">
+                Seleccione el tipo de notificación
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Destinatarios" formControlName="destinatario">
+                <mat-option value="ESTUDIANTES"> Estudiantes </mat-option>
+                <mat-option value="PROFESORES"> Profesores </mat-option>
+                <mat-option value="FUNCIONARIOS"> Funcionarios </mat-option>
+            </mat-select>
+
+            <mat-error *ngIf=" form.controls['notificacion'].controls['destinatario'].touched && form.controls['notificacion'].controls['destinatario'].invalid ">
+                Elija los destinatarios
+            </mat-error>
+        </mat-form-field>
+
+        <button class="btn-enviar" mat-button mat-raised-button color="primary"> Enviar </button>
+
     </div>
-
-    <div class="form-group">
-      <label for="descripcion"> Descripción</label>
-      <textarea formControlName="descripcion" class="form-control" rows="3" id="descripcion" 
-                [ngClass]=" { 'is-invalid': form.controls['notificacion']?.controls['descripcion'].touched && form.controls['notificacion'].controls['descripcion']?.invalid } "></textarea>
-
-      <div class="invalid-feedback">
-        Escriba una descripción
-      </div>
-    </div>
-    
-
-    <div class="form-group">
-      <label for="tipo"> Tipo </label>
-      <select formControlName="tipo" id="tipo" class="form-control"
-              [ngClass]=" { 'is-invalid': form.controls['notificacion']?.controls['tipo'].touched && form.controls['notificacion'].controls['tipo']?.invalid } ">
-        <option value="">Seleccionar</option>
-        <option value="1"> Noticia </option>
-        <option value="2"> Advertencia </option>
-        <option value="3"> Peligro </option>
-      </select>
-
-      <div class="invalid-feedback"> Elija el tipo de notificación </div>
-    </div>
- 
-
-    <div class="form-group">
-      <label for="para"> Enviar a </label>
-      <select formControlName="destinatario" id="para" class="form-control"
-              [ngClass]=" { 'is-invalid': form.controls['notificacion'].controls['destinatario'].touched && form.controls['notificacion'].controls['destinatario']?.invalid } ">
-        <option value="">Seleccionar</option>
-        <option value="PROFESORES">Profesores</option>
-        <option value="ESTUDIANTES">Estudiantes</option>
-        <option value="DIRECTIVOS">Directivos</option>
-      </select>
-
-      <div class="invalid-feedback"> Elija los destinatarios </div>
-    </div>
-  </div>
-
-  <div class="boton-enviar">
-    <button (click)="enviar()" class="btn btn-block btn-primary"
-          [disabled]=" form.invalid ">
-      Enviar 
-    </button>
-  </div>
 
 </form>

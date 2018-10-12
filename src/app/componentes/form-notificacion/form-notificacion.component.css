@@ -1,6 +1,5 @@
-
 .titulo-form-noti {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .boton-enviar {
@@ -10,4 +9,19 @@
 
 .rojo {
     color: red;
+}
+
+.form-bloque mat-form-field {
+    display: block;
+}
+
+.bloque {
+    display: block;
+}
+
+.btn-enviar {
+    margin-top: 30px;
+    width: 100%;
+    padding: 2px;
+    font-size: 17px;
 }
