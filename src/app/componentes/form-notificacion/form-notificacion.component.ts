@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FormNotificacionComponent implements OnInit {
   public form: FormGroup;
+  public cargando = false;
 
   constructor( private _principal: ServicioPrincipalService) {
     this.form = new FormGroup({
@@ -26,6 +27,8 @@ export class FormNotificacionComponent implements OnInit {
   }
 
   enviar() {
+    this.cargando = true;
+
     this._principal.enviarNotificacion(this.form.value.notificacion)
       .subscribe( (resp: any) => {
 
@@ -34,8 +37,12 @@ export class FormNotificacionComponent implements OnInit {
         } else {
           console.log(`Error`);
         }
+
+        this.cargando = false;
       }, err => {
         console.log(`Error al enviar notificación ${ JSON.stringify(err) }`);
+
+        this.cargando = false;
       });
   }
 

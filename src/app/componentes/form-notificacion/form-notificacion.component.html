@@ -45,7 +45,18 @@
             </mat-error>
         </mat-form-field>
 
-        <button class="btn-enviar" mat-button mat-raised-button color="primary"> Enviar </button>
+
+        <div *ngIf="!cargando; else progreso">
+            <button [disabled]="form.invalid" (click)="enviar()" class="btn-enviar animated fadeIn fast" mat-button mat-raised-button color="primary"> Enviar </button>
+        </div>
+
+        <ng-template #progreso>
+            <div class="cont-cargando">
+                <mat-spinner class="cargando animated fadeIn fast" strokeWidth="5" diameter="40" mode="indeterminate"></mat-spinner>
+            </div>
+        </ng-template>
+
+
 
     </div>
 
