@@ -1,6 +1,6 @@
-<mat-card *ngFor="let notificacion of notificaciones" class="card-item">
+<mat-card *ngFor="let notificacion of notificaciones" class="card-item animated fadeIn">
 
-    <img class="img-item" src="assets/imgs/noti_1.png">
+    <img class="img-item" [src]=" 'assets/imgs/noti_'+ notificacion.tipo +'.png' ">
 
     <div class="cont-mitad">
         <div class="cont-mitad-superior">

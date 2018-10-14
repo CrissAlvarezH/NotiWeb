@@ -1,5 +1,6 @@
 
 export interface Notificacion {
+    id?: number;
     titulo: string;
     descripcion: string;
     tipo: number;
