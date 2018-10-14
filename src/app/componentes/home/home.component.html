@@ -1,11 +1,13 @@
 <div class="row">
     <div class="col-md-4">
         <mat-card class="card-form">
-            <app-form-notificacion (notiEnviada)="agregarNoti($event)"></app-form-notificacion>
+            <app-form-notificacion (enviarNoti)=" enviarNoti($event) " [cargando]=" cargandoEnvio "></app-form-notificacion>
         </mat-card>
     </div>
 
     <div class="col-md-8">
-        <app-lista-notificaciones [notificaciones]="notificaciones"></app-lista-notificaciones>
+        <app-lista-notificaciones   [notificaciones]=" notificaciones "
+                                    (reenviarNoti)=" reenviarNoti($event) " 
+                                    (borrarNoti)=" borrarNoti($event) "></app-lista-notificaciones>
     </div>
 </div>

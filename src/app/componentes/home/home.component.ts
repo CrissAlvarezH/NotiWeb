@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   public notificaciones: Notificacion[];
 
   public cargandoNotis = false;
+  public cargandoEnvio = false;
 
   constructor(private _principal: ServicioPrincipalService) { }
 
@@ -31,10 +32,55 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  public agregarNoti(noti) {
-    console.log( JSON.stringify(noti) );
+  public reenviarNoti(noti) {
 
-    this.notificaciones.unshift(noti);
+    this._principal.enviarNotificacion(noti)
+      .subscribe( (resp: any) => {
+
+        if ( resp.okay ) {
+
+          noti.id = resp.respuesta;
+
+          // agregamos la notificacion al inicio del array
+          this.notificaciones.unshift(noti);
+
+        } else {
+          console.log(`Error`);
+        }
+
+      }, err => {
+        console.log(`Error al enviar notificación ${ JSON.stringify(err) }`);
+
+      });
+  }
+
+  public enviarNoti(noti) {
+    this.cargandoEnvio = true;
+
+    this._principal.enviarNotificacion(noti)
+      .subscribe( (resp: any) => {
+
+        if ( resp.okay ) {
+
+          noti.id = resp.respuesta;
+
+          // agregamos la notificacion al inicio del array
+          this.notificaciones.unshift(noti);
+
+        } else {
+          console.log(`Error`);
+        }
+
+        this.cargandoEnvio = false;
+      }, err => {
+        console.log(`Error al enviar notificación ${ JSON.stringify(err) }`);
+
+        this.cargandoEnvio = false;
+      });
+  }
+
+
+  public borrarNoti( id ) {
   }
 
 }

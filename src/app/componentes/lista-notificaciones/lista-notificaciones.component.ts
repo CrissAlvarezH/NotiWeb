@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ServicioPrincipalService } from '../../servicios/servicio-principal.service';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Notificacion } from '../../utils/interfaces';
 
 @Component({
@@ -9,11 +8,24 @@ import { Notificacion } from '../../utils/interfaces';
 })
 export class ListaNotificacionesComponent implements OnInit {
 
-  @Input() notificaciones: Notificacion[];
+  @Input() public notificaciones: Notificacion[];
+  @Output() public reenviarNoti: EventEmitter<Notificacion>;
+  @Output() public borrarNoti: EventEmitter<number>;
 
-  constructor(private _principal: ServicioPrincipalService) { }
+  constructor() {
+    this.reenviarNoti = new EventEmitter();
+    this.borrarNoti = new EventEmitter();
+  }
 
   ngOnInit() {
+  }
+
+  public reenviar( noti: Notificacion) {
+    this.reenviarNoti.emit( noti );
+  }
+
+  public borrar( id: number ) {
+    this.borrarNoti.emit( id );
   }
 
 }

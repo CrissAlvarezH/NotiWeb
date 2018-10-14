@@ -17,13 +17,13 @@
     <div class="cont-botones">
 
         <div class="cont-btn-reenviar">
-            <button mat-icon-button class="boton-reenviar">
+            <button (click)=" reenviar( notificacion ) " mat-icon-button class="boton-reenviar">
                 <mat-icon aria-label="Enviar notificación">send</mat-icon>
             </button>
         </div>
 
         <div class="cont-btn-borrar">
-            <button mat-icon-button class="boton-borrar">
+            <button (click)=" borrar( notificacion.id ) " mat-icon-button class="boton-borrar">
                 <mat-icon aria-label="Borrar notificación">delete</mat-icon>
             </button>
         </div>

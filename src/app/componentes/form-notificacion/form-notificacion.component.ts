@@ -1,5 +1,4 @@
-import { ServicioPrincipalService } from './../../servicios/servicio-principal.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Notificacion } from '../../utils/interfaces';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -9,12 +8,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./form-notificacion.component.css']
 })
 export class FormNotificacionComponent implements OnInit {
+  @Input() public cargando;
+  @Output() public enviarNoti: EventEmitter<Notificacion>;
   public form: FormGroup;
-  public cargando = false;
 
-  @Output() notiEnviada: EventEmitter<Notificacion>;
-
-  constructor( private _principal: ServicioPrincipalService) {
+  constructor() {
     this.form = new FormGroup({
       'notificacion' : new FormGroup({
         'titulo': new FormControl('', [ Validators.required ]),
@@ -24,36 +22,14 @@ export class FormNotificacionComponent implements OnInit {
       })
     });
 
-    this.notiEnviada = new EventEmitter();
+    this.enviarNoti = new EventEmitter();
   }
 
   ngOnInit() {
   }
 
   enviar() {
-    this.cargando = true;
-
-    this._principal.enviarNotificacion(this.form.value.notificacion)
-      .subscribe( (resp: any) => {
-
-        if ( resp.okay ) {
-
-          const noti: Notificacion = this.form.value.notificacion;
-          noti.id = resp.respuesta;
-
-          this.notiEnviada.emit(noti); // emitimos el evento de que se agregó una notificacion
-
-          console.log(`Respuesta de servicio web al enviar notificacion ${ JSON.stringify(resp) }`);
-        } else {
-          console.log(`Error`);
-        }
-
-        this.cargando = false;
-      }, err => {
-        console.log(`Error al enviar notificación ${ JSON.stringify(err) }`);
-
-        this.cargando = false;
-      });
+    this.enviarNoti.emit( this.form.value.notificacion );
   }
 
 }
