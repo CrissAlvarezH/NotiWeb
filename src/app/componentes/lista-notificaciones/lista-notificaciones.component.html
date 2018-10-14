@@ -1,0 +1,33 @@
+<mat-card *ngFor="let notificacion of notificaciones" class="card-item">
+
+    <img class="img-item" src="assets/imgs/noti_1.png">
+
+    <div class="cont-mitad">
+        <div class="cont-mitad-superior">
+            <p class="titulo-item"> {{ notificacion.titulo }} </p>
+
+            <p class="dest-item"> {{ notificacion.destinatario }} </p>
+
+        </div>
+
+        <p class="descripcion-item"> {{ notificacion.descripcion }} </p>
+    </div>
+
+
+    <div class="cont-botones">
+
+        <div class="cont-btn-reenviar">
+            <button mat-icon-button class="boton-reenviar">
+                <mat-icon aria-label="Enviar notificación">send</mat-icon>
+            </button>
+        </div>
+
+        <div class="cont-btn-borrar">
+            <button mat-icon-button class="boton-borrar">
+                <mat-icon aria-label="Borrar notificación">delete</mat-icon>
+            </button>
+        </div>
+
+    </div>
+
+</mat-card>

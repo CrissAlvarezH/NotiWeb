@@ -35,9 +35,9 @@
 
         <mat-form-field>
             <mat-select placeholder="Destinatarios" formControlName="destinatario">
-                <mat-option value="ESTUDIANTES"> Estudiantes </mat-option>
-                <mat-option value="PROFESORES"> Profesores </mat-option>
-                <mat-option value="FUNCIONARIOS"> Funcionarios </mat-option>
+                <mat-option value="Estudiantes"> Estudiantes </mat-option>
+                <mat-option value="Profesores"> Profesores </mat-option>
+                <mat-option value="Funcionarios"> Funcionarios </mat-option>
             </mat-select>
 
             <mat-error *ngIf=" form.controls['notificacion'].controls['destinatario'].touched && form.controls['notificacion'].controls['destinatario'].invalid ">

@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { FormNotificacionComponent } from './componentes/form-notificacion/form-notificacion.component';
 import { MaterialModule } from './material.module';
+import { ListaNotificacionesComponent } from './componentes/lista-notificaciones/lista-notificaciones.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    FormNotificacionComponent
+    FormNotificacionComponent,
+    ListaNotificacionesComponent
   ],
   imports: [
     BrowserModule,

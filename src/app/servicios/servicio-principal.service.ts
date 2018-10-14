@@ -12,7 +12,7 @@ export class ServicioPrincipalService {
 
   public enviarNotificacion( notificacion: Notificacion ) {
     const ahora = new Date();
-    notificacion.fecha = `${ ahora.getDay() } del mes ${ ahora.getMonth() } `;
+    notificacion.fecha = `${ ahora.getFullYear() }-${ ahora.getMonth() }-${ ahora.getDay() } `;
     notificacion.hora = `${ ahora.getHours() }:${ ahora.getMinutes() }`;
 
     const body = notificacion;
@@ -20,5 +20,9 @@ export class ServicioPrincipalService {
     const url = 'http://10.10.10.15/noti_server/src/index.php/notificaciones';
 
     return this.http.post(url, body);
+  }
+
+  public getNotificaciones() {
+    return this.http.get('http://10.10.10.15/noti_server/src/index.php/notificaciones');
   }
 }

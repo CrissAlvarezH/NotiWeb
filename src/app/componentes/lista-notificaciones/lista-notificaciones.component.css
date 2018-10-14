@@ -1,0 +1,84 @@
+.card-item {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.img-item {
+    width: 50px;
+    border-radius: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.cont-mitad {
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: auto;
+}
+
+.cont-mitad p {
+    margin: 0;
+}
+
+.cont-mitad-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cont-botones {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: auto;
+    display: flex;
+}
+
+.cont-btn-borrar {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+
+/* Diseño al texto */
+
+.titulo-item {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.descripcion-item {
+    color: #817d7d;
+}
+
+.dest-item {
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #333;
+    background-color: rgba(44, 44, 44, 0.185);
+    font-size: .8em;
+}
+
+
+/* Botones */
+
+.boton-reenviar {
+    box-shadow: 0 0 0 1.2px rgb(0, 0, 0);
+}
+
+.boton-borrar {
+    box-shadow: 0 0 0 1.2px rgb(0, 0, 0);
+}
