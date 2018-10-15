@@ -81,6 +81,14 @@ export class HomeComponent implements OnInit {
 
 
   public borrarNoti( id ) {
+    this._principal.borrarNotificacion(id)
+      .subscribe( (resp: any) => {
+        if ( resp.okay ) {
+          this.notificaciones = this.notificaciones.filter( noti => noti.id !== id );
+        }
+      }, err => {
+
+      });
   }
 
 }

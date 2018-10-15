@@ -25,4 +25,8 @@ export class ServicioPrincipalService {
   public getNotificaciones() {
     return this.http.get('http://10.10.10.15/noti_server/src/index.php/notificaciones');
   }
+
+  public borrarNotificacion( id: number ) {
+    return this.http.delete(`http://10.10.10.15/noti_server/src/index.php/notificaciones/${ id }`);
+  }
 }
