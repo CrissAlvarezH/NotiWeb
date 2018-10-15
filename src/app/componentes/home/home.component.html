@@ -6,8 +6,18 @@
     </div>
 
     <div class="col-md-8">
-        <app-lista-notificaciones   [notificaciones]=" notificaciones "
-                                    (reenviarNoti)=" reenviarNoti($event) " 
-                                    (borrarNoti)=" borrarNoti($event) "></app-lista-notificaciones>
+        <div *ngIf=" notificaciones?.length == 0; else lista " >
+            <div class="cont-no-hay-notis">
+                <img src="assets/imgs/vacio.png" width="100px" alt="No tiene notificaciones" > 
+                <p>No hay notificaciones</p>
+            </div>
+        </div>
+        
+        <ng-template #lista>
+            <app-lista-notificaciones   
+            [notificaciones]=" notificaciones "
+            (reenviarNoti)=" reenviarNoti($event) " 
+            (borrarNoti)=" borrarNoti($event) "></app-lista-notificaciones>
+        </ng-template>
     </div>
 </div>

@@ -38,11 +38,18 @@ export class HomeComponent implements OnInit {
       .subscribe( (resp: any) => {
 
         if ( resp.okay ) {
-
-          noti.id = resp.respuesta;
+          // Creamos un nuevo objeto para no mantener la referencia en caso de que no se haya cambiado
+          // los valores en el formuario, para así no alterar la referencia que ya está en el objeto
+          const notificacion: Notificacion = {
+            id: resp.respuesta,
+            titulo: noti.titulo,
+            descripcion: noti.descripcion,
+            tipo: noti.tipo,
+            destinatario: noti.destinatario
+          };
 
           // agregamos la notificacion al inicio del array
-          this.notificaciones.unshift(noti);
+          this.notificaciones.unshift(notificacion);
 
         } else {
           console.log(`Error`);
@@ -59,13 +66,23 @@ export class HomeComponent implements OnInit {
 
     this._principal.enviarNotificacion(noti)
       .subscribe( (resp: any) => {
+        console.log(`RESPUESTA AL ENVIAR `, JSON.stringify(resp));
 
         if ( resp.okay ) {
-
-          noti.id = resp.respuesta;
+          // Creamos un nuevo objeto para no mantener la referencia en caso de que no se haya cambiado
+          // los valores en el formuario, para así no alterar la referencia que ya está en el objeto
+          const notificacion: Notificacion = {
+            id: resp.respuesta,
+            titulo: noti.titulo,
+            descripcion: noti.descripcion,
+            tipo: noti.tipo,
+            destinatario: noti.destinatario
+          };
 
           // agregamos la notificacion al inicio del array
-          this.notificaciones.unshift(noti);
+          this.notificaciones.unshift(notificacion);
+
+          console.log(`NOTIFICACIONES`, JSON.stringify(this.notificaciones));
 
         } else {
           console.log(`Error`);
