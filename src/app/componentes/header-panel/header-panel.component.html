@@ -1,0 +1,32 @@
+<div class="cont-header">
+
+  <div class="cont-izquierda">
+    
+    <div class="cont-logo">
+      <img class="img-logo" src="assets/imgs/letra-u.png" alt="Logo PAFYS">
+    </div>
+    
+    <ul class="cont-menu">
+      <li *ngFor=" let item of menu " 
+          routerLinkActive="activado" 
+          [routerLink]=" item.ruta " 
+          > {{ item.pagina }} </li>
+    </ul>
+
+  </div>
+
+  <div class="cont-derecha">
+
+    <!-- <button mat-stroked-button 
+            routerLink="/login" 
+            color="primary" class="btn-iniciar-sesion"
+            > <b>Iniciar sesion</b> </button>
+     -->
+    <!-- <div class="cont-avatar-nombre">
+      <span > Nombre Apellido </span>
+      <img  src="assets/imgs/perfil_prueba.jpg" alt="">
+    </div> -->
+  
+  </div>
+
+</div>

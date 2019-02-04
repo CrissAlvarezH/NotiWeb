@@ -3,6 +3,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 body {
     background-color: #eaeaea3d !important;
+    font-family: Helvetica, Arial, Sans-Serif;
 }
 
 .animated {

@@ -1,0 +1,80 @@
+<div class="cont-form-noticias ">
+
+    <mat-card class="card-form">
+
+        <div class="cont-img">
+            <img class="img-placeholder" *ngIf=" !imagen "  src="assets/imgs/adjuntar.png">
+            <img class="img-escogida animated fadeIn"  *ngIf=" imagen " [src]=" rutaImg " alt="">
+
+            <!-- Input file invisible que manejaremos con el boton-->
+            <input (change)=" onFileCambia($event) " type="file" accept="image/*" style="display: none" #inputFile> 
+
+            <button mat-button (click)=" inputFile.click() ">Agregar imagen</button>
+        </div>
+        
+        <form #form="ngForm" class="form-bloque animated fadeIn fast">
+        
+            <mat-form-field>
+                <mat-select placeholder="Carrera" [(ngModel)]=" noticia.idCarrera " name="idCarrera" required>
+                    <mat-option value="3"> Ingeniería Industrial </mat-option>
+                    <mat-option value="4"> Ingeniería Mecánica </mat-option>
+                    <mat-option value="5"> Ingeniería de Sistemas </mat-option>
+                </mat-select>
+    
+                <mat-error *ngIf=" form.controls['carrera']?.touched && form.controls['carrera']?.invalid ">
+                    Elija la carrera
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+
+                <mat-select placeholder="Tipo" [(ngModel)]=" noticia.tipo " name="tipo" required>
+                    <mat-option value="1" > Noticia </mat-option>
+                    <mat-option value="2"> Banner </mat-option>
+                </mat-select>
+    
+                <mat-error *ngIf=" form.controls['tipo']?.touched && form.controls['tipo']?.invalid ">
+                    Seleccione el tipo
+                </mat-error>
+            </mat-form-field>
+    
+            <!-- Estos inputs no se deben mostrar si la noticia es de tipo Banner -->
+            <div *ngIf=" noticia.tipo == '1' " class=" animated fadeIn fast cont-inputs-noticias-no-banner">
+
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Titulo" [(ngModel)]=" noticia.titulo " name="titulo" maxlength="50" required>
+        
+                    <mat-error *ngIf=" form.controls['titulo']?.touched && form.controls['titulo']?.invalid ">
+                        Escriba un titulo
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field>
+                    <textarea matInput placeholder="Descripcion" rows="4" [(ngModel)]=" noticia.descripcion " name="descripcion" required></textarea>
+        
+                    <mat-error *ngIf=" form.controls['descripcion']?.touched && form.controls['descripcion']?.invalid ">
+                        Escriba una descripción
+                    </mat-error>
+                </mat-form-field>  
+
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Enlace" [(ngModel)]=" noticia.enlace " name="enlace">
+                </mat-form-field>
+            </div>
+
+    
+            <div *ngIf="!cargando; else progreso">
+                <button [disabled]="form.invalid || !imagen" (click)="enviar()" class="btn-enviar animated fadeIn fast" mat-button mat-raised-button color="primary"> Enviar </button>
+            </div>
+    
+            <ng-template #progreso>
+                <div class="cont-cargando">
+                    <mat-spinner class="cargando animated fadeIn fast" strokeWidth="5" diameter="40" mode="indeterminate"></mat-spinner>
+                </div>
+            </ng-template>
+        
+        </form>
+
+    </mat-card>
+
+</div>

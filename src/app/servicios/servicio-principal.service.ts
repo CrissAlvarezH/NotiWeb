@@ -17,16 +17,16 @@ export class ServicioPrincipalService {
 
     const body = notificacion;
 
-    const url = 'http://10.10.10.15/noti_server/src/index.php/notificaciones';
+    const url = 'http://192.168.137.1/NotiServer/src/index.php/notificaciones';
 
     return this.http.post(url, body);
   }
 
   public getNotificaciones() {
-    return this.http.get('http://10.10.10.15/noti_server/src/index.php/notificaciones');
+    return this.http.get('http://192.168.137.1/NotiServer/src/index.php/notificaciones');
   }
 
   public borrarNotificacion( id: number ) {
-    return this.http.delete(`http://10.10.10.15/noti_server/src/index.php/notificaciones/${ id }`);
+    return this.http.delete(`http://192.168.137.1/NotiServer/src/index.php/notificaciones/${ id }`);
   }
 }
