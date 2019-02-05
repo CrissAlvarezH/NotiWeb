@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Noticia } from '../../utils/interfaces';
+import { ServicioPrincipalService } from '../../servicios/servicio-principal.service';
 
 @Component({
   selector: 'app-form-noticias',
@@ -12,16 +13,17 @@ export class FormNoticiasComponent implements OnInit {
 
   public imagen: File;
   public rutaImg;
+  public cargando = false;
 
   public noticia: Noticia = {
     titulo: '',
     descripcion: '',
     tipo: '1',
     enlace: '',
-    idCarrera: 0
+    idCarrera: '0'
   };
 
-  constructor() {
+  constructor( private _principal: ServicioPrincipalService ) {
 
   }
 
@@ -48,7 +50,20 @@ export class FormNoticiasComponent implements OnInit {
   }
 
   public enviar() {
+    this.cargando = true;
+    console.log(this.noticia, this.imagen);
 
+    this._principal.enviarNoticia(this.noticia, this.imagen)
+          .subscribe(
+            (res) => {
+              console.log('Repuesta insertar noticia', res);
+              this.cargando = false;
+            },
+            (err) => {
+              console.log('Error -> ', err);
+              this.cargando = false;
+            }
+          );
   }
 
 }

@@ -17,6 +17,6 @@ export interface Noticia {
     tipo: string;
     fecha?: string;
     enlace?: string;
-    idCarrera?: number;
+    idCarrera?: string;
     urlImagen?: string;
 }
