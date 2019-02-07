@@ -1,3 +1,55 @@
-<p>
-  lista-noticias works!
-</p>
+
+<div class="cont-list-noticias">
+
+  <div *ngFor="let noticia of noticias" class="cont-item-noticia">
+    
+    <div *ngIf="noticia.tipo == 1" class="cont-noti-noticias">
+      
+      <mat-card>
+
+        <div class="cont-card-noticias">
+
+          <div class="cont-img-noticias">
+            <img [src]=" 'http://142.93.71.94/NotiServer/src/uploads/noticias/'+ noticia.id +'.jpg' ">
+          </div>
+          
+          <div class="cont-text-noticia">
+
+            <h4> {{ noticia.titulo }} </h4>
+            <span class="fecha-noticia"> {{ noticia.fecha }} </span>
+            
+            <p> {{ noticia.descripcion }} </p>
+          </div>
+        </div>
+
+      </mat-card>
+      
+    </div>
+    
+    <div *ngIf="noticia.tipo == 2" class="cont-noti-banner">
+      
+      <mat-card>
+
+        <div class="cont-card-banner">
+
+          <div class="cont-img-banner">
+            <img [src]=" 'http://142.93.71.94/NotiServer/src/uploads/noticias/'+ noticia.id +'.jpg' ">
+          </div>
+
+          <div class="cont-text-banner">
+            <h5> Banner </h5>
+
+            <div>
+              <span> {{ noticia.fecha }} </span>
+            </div>
+          </div>
+
+        </div>
+
+      </mat-card>
+      
+    </div>
+    
+  </div>
+
+</div>
