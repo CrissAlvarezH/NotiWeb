@@ -3,13 +3,16 @@
 
     <div class="col-md-4">
 
-        <app-form-noticias></app-form-noticias>
+        <app-form-noticias
+         (enviarNoticia)="enviarNoticia($event)"
+         [cargando]=" cargandoEnvio "></app-form-noticias>
 
     </div>
 
     <div class="col-md-8">
 
-
+        <app-lista-noticias
+            [noticias]="noticias"></app-lista-noticias>
 
     </div>
 

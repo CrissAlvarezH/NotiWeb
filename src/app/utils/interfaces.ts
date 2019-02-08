@@ -19,4 +19,11 @@ export interface Noticia {
     enlace?: string;
     idCarrera?: string;
     urlImagen?: string;
+    imagen?: File;
+}
+
+export interface ResServer {
+    okay: boolean;
+    noticias?: any;
+    id?: number;
 }

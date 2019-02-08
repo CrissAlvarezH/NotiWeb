@@ -17,21 +17,21 @@ export class ServicioPrincipalService {
 
     const body = notificacion;
 
-    const url = 'http://192.168.137.1/NotiServer/src/index.php/notificaciones';
+    const url = 'http://142.93.71.94/NotiServer/src/index.php/notificaciones';
 
     return this.http.post(url, body);
   }
 
   public getNotificaciones() {
-    return this.http.get('http://192.168.137.1/NotiServer/src/index.php/notificaciones');
+    return this.http.get('http://142.93.71.94/NotiServer/src/index.php/notificaciones');
   }
 
   public borrarNotificacion( id: number ) {
-    return this.http.delete(`http://192.168.137.1/NotiServer/src/index.php/notificaciones/${ id }`);
+    return this.http.delete(`http://142.93.71.94/NotiServer/src/index.php/notificaciones/${ id }`);
   }
 
   public enviarNoticia( noticia: Noticia, imagen: File ) {
-    const url = 'http://192.168.137.1/NotiServer/src/index.php/noticias';
+    const url = 'http://142.93.71.94/NotiServer/src/index.php/noticias';
 
     const formData: FormData = new FormData();
 
@@ -45,5 +45,11 @@ export class ServicioPrincipalService {
     formData.append('enlace', noticia.enlace);
 
     return this.http.post(url, formData);
+  }
+
+  public getNoticias() {
+    const url = 'http://142.93.71.94/NotiServer/src/index.php/noticias';
+
+    return this.http.get(url);
   }
 }

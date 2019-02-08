@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Noticia } from '../../utils/interfaces';
-import { ServicioPrincipalService } from '../../servicios/servicio-principal.service';
 
 @Component({
   selector: 'app-form-noticias',
@@ -13,7 +11,9 @@ export class FormNoticiasComponent implements OnInit {
 
   public imagen: File;
   public rutaImg;
-  public cargando = false;
+
+  @Input() public cargando;
+  @Output() public enviarNoticia: EventEmitter<any>;
 
   public noticia: Noticia = {
     titulo: '',
@@ -23,8 +23,8 @@ export class FormNoticiasComponent implements OnInit {
     idCarrera: '0'
   };
 
-  constructor( private _principal: ServicioPrincipalService ) {
-
+  constructor() {
+    this.enviarNoticia = new EventEmitter();
   }
 
   ngOnInit() {
@@ -50,20 +50,9 @@ export class FormNoticiasComponent implements OnInit {
   }
 
   public enviar() {
-    this.cargando = true;
-    console.log(this.noticia, this.imagen);
+    this.noticia.imagen = this.imagen;
 
-    this._principal.enviarNoticia(this.noticia, this.imagen)
-          .subscribe(
-            (res) => {
-              console.log('Repuesta insertar noticia', res);
-              this.cargando = false;
-            },
-            (err) => {
-              console.log('Error -> ', err);
-              this.cargando = false;
-            }
-          );
+    this.enviarNoticia.emit(this.noticia);
   }
 
 }
