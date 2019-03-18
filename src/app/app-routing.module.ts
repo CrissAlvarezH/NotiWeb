@@ -11,6 +11,7 @@ const RUTAS: Routes = [
     children: [
       { path: 'notificaciones', component: HomeComponent},
       { path: 'noticias', component: NoticiasPageComponent},
+      { path: '**', redirectTo: 'notificaciones', pathMatch: 'full' }
     ]
   },
   { path: '**', redirectTo: 'panel', pathMatch: 'full' }

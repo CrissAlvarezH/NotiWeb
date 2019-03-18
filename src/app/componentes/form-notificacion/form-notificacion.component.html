@@ -23,7 +23,7 @@
 
         <mat-form-field>
             <mat-select placeholder="Tipo" formControlName="tipo">
-                <mat-option value="1"> Noticia </mat-option>
+                <mat-option value="1"> Mensaje </mat-option>
                 <mat-option value="2"> Advertencia </mat-option>
                 <mat-option value="3"> Peligro </mat-option>
             </mat-select>
@@ -35,9 +35,9 @@
 
         <mat-form-field>
             <mat-select placeholder="Destinatarios" formControlName="destinatario">
-                <mat-option value="Estudiantes"> Estudiantes </mat-option>
-                <mat-option value="Profesores"> Profesores </mat-option>
-                <mat-option value="Funcionarios"> Funcionarios </mat-option>
+                <mat-option value="ESTUDIANTE"> Estudiantes </mat-option>
+                <mat-option value="PROFESOR"> Profesores </mat-option>
+                <mat-option value="FUNCIONARIO"> Funcionarios </mat-option>
             </mat-select>
 
             <mat-error *ngIf=" form.controls['notificacion'].controls['destinatario'].touched && form.controls['notificacion'].controls['destinatario'].invalid ">
